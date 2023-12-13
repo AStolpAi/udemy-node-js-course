@@ -24,7 +24,8 @@ button {
   cursor: pointer;
 }
 button:hover,
-button:active {
+button:active,
+button.active {
   background-color: green;
-  color: yellow;
+  color: black;
 }

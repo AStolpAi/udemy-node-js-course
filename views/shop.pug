@@ -1,30 +1,21 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/main.css")
-        title #{docTitle}
-    body
-        header.main-header
-            nav.main-header-nav
-                ul.main-header-item-list 
-                    li.main-header-items
-                        a.active(href="/") Shop
-                    li.main-header-items
-                        a(href="/admin/add-product") Add
+extends layouts/main-layout.pug
 
-        main
-            if prods.length > 0
-                .grid
-                    each product in prods
-                        article.card.product-item 
-                            header.card-header 
-                                h1.product-title #{product.title}
-                            .card-image 
-                                img(src="https://cdn.pixabay.com/photo/2023/12/08/23/46/cat-8438334_1280.jpg", alt="A Book")
-                            .card-content 
-                                h2.product-price 20$
-                                p.product-description Product descp.
-                            .card-actions   
-                                button.btn Add to cart
+block styles
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="/css/products.css")
+
+block content
+    main
+        if prods.length > 0
+            .grid
+                each product in prods
+                    article.card.product-item 
+                        header.card-header 
+                            h1.product-title #{product.title}
+                        .card-image 
+                            img(src="https://cdn.pixabay.com/photo/2023/12/08/23/46/cat-8438334_1280.jpg", alt="A Book")
+                        .card-content 
+                            h2.product-price 20$
+                            p.product-description Product descp.
+                        .card-actions   
+                            button.btn Add to cart

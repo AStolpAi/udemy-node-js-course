@@ -32,6 +32,7 @@ body {
   color: white;
 }
 .main-header-items a:hover,
-.main-header-items a:active {
-  color: yellow;
+.main-header-items a:active,
+.main-header-items.active {
+  color: black;
 }
