@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Product</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <%- include('includes/head.ejs') %>
   </head>
 
   <body>
@@ -18,9 +12,23 @@
         </ul>
       </nav>
     </header>
+
     <main>
+      <% if(prods.length > 0){ %>
       <h1>My Products</h1>
       <p>List off all of our Products</p>
+      <section>
+        <% for (let product of prods) { %>
+        <h2><%= product.title %></h2>
+        <img
+          src="https://cdn.pixabay.com/photo/2023/12/08/23/46/cat-8438334_1280.jpg"
+          alt="A Book from ejs file"
+        />
+        <% } %>
+      </section>
     </main>
+    <% } else { %>
+    <p>No products found.</p>
+    <% } %>
   </body>
 </html>
