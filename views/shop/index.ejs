@@ -12,10 +12,11 @@
         <% for (let product of prods) { %>
         <h2><%= product.title %></h2>
         <img
-          src="https://cdn.pixabay.com/photo/2023/12/08/23/46/cat-8438334_1280.jpg"
-          alt="A Book from ejs file"
+          src="<%= product.imageUrl %>"
+          alt="<%= product.title %>"
         />
         <% } %>
+      
       </section>
     </main>
     <% } else { %>
