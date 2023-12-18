@@ -2,10 +2,32 @@
   </head>
 
   <body>
-     <%- include('../includes/navigation.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+
     <main>
-        <section>
-          <p>I am the admin product</p>
+      <% if(prods.length > 0) { %>
+      <h1>My Products</h1>
+      <p>List off all of our Products</p>
+      <section>
+        <% for (let product of prods) { %>
+        <h2><%= product.title %></h2>
+        <img
+          src="<%= product.imageUrl %>"
+          alt="<%= product.title %>"
+        />
+        <h3><%= product.price %></h3>
+        <p><%= product.description %></p>
+        <% } %>
+
+        <section class="card-actions">
+          <a href="/admin/edit-product">Edit</a>
+          <form action="/admin/delete-product" method="POST">
+            <button type="submit">Delete</button>
+          </form>
         </section>
+      </section>
     </main>
+    <% } else { %>
+    <p>No products found.</p>
+    <% } %>
 <%- include('../includes/end.ejs') %>
