@@ -8,12 +8,11 @@ const getProductsFromFile = (callback) => {
         if(err) {
             callback([]);
         } else {
-
             callback(JSON.parse(fileContent));
         }
-    })
-}
-
+    });
+};
+ 
 module.exports = class Product {
     constructor(id, title, imageUrl, description, price) {
         this.id = id;
@@ -23,26 +22,28 @@ module.exports = class Product {
         this.price = price;
     }
 
+    
     save() {
         getProductsFromFile(products => {
             if(this.id) {
-                const exisitingProductIndex = products.find(prod =>  prod.id === this.id);
+                const existingProductIndex = products.findIndex(prod =>  prod.id === this.id);
                 const updatedProducts = [...products];
-                updatedProducts[exisitingProductIndex] = this;
-                fs.writeFile(p, JSON.stringify(products, (err) => {
+                updatedProducts[existingProductIndex] = this;
+                fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
                     if(err) {
-                        console.log(err, "errrrrrrrr")
+                        console.log(err, "errrrrrrrr");
                     }
-                }))
+                });
+            } else {
+                this.id = Math.random().toString();
+                products.push(this);
+                fs.writeFile(p, JSON.stringify(products), (err) => {
+                    if(err) {
+                        console.log(err);
+                    }
+                });
             }
-            this.id = Math.random().toString();
-            products.push(this);
-            fs.writeFile(p, JSON.stringify(products), (err) => {
-                if(err) {
-                    console.log(err);
-                }
-            });
-        }); 
+        });
     }
 
     static fetchAll(callback) {
@@ -55,4 +56,5 @@ module.exports = class Product {
             callback(product);
         });
     }
+
 }
