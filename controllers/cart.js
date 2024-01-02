@@ -30,6 +30,16 @@ exports.postCart = (req, res, next) => {
     res.redirect('/cart');
 } 
 
+exports.postCartDeleteProduct = (req, res, next) => {
+    const prodId = req.body.prodId;
+    const price = req.body.price;
+    console.log(price, "price");
+    Product.findById(prodId, product => {
+        Cart.deleteProduct(prodId);
+        res.redirect("/cart");
+    })
+}
+
 exports.deleteCart = (req, res, next) => {
     const prodId = req.body.productId;
     Product.findById(prodId, product => {
